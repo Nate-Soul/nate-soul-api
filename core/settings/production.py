@@ -1,7 +1,5 @@
 from .base import *
 
-ALLOWED_HOSTS = ["nate-soul-api.vercel.app"]
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -20,5 +18,5 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 CORS_ALLOWED_ORIGINS = [
-    "nate-soul.vercel.app",
+    "https://nate-soul.vercel.app",
 ]
