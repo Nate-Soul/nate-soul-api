@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = str(BASE_DIR / 'static')
+STATICFILES_DIRS = [str(BASE_DIR / 'static')]
 STATIC_ROOT = str(BASE_DIR / 'staticfiles_build/static')
 
 #media
