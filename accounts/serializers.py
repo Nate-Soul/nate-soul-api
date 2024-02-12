@@ -4,9 +4,6 @@ from rest_framework import serializers
 from .models import Profile, Social
     
 class SocialSerializer(serializers.ModelSerializer):
-    
-    # profile = serializers.ReadOnlyField(source=Profile)
-    
     class Meta:
         model = Social
         fields = "__all__"
