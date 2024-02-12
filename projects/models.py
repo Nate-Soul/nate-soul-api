@@ -40,7 +40,7 @@ class Technology(models.Model):
         verbose_name=_("Technology Logo"), 
         upload_to="images/technologies/", 
         default="images/technologies/default.svg",
-        validators=[FileExtensionValidator(['svg', 'png', 'jpeg','jpg', 'webp'])]
+        validators=[FileExtensionValidator(['svg', 'png', 'jpeg','jpg', 'webp', ''])]
     )
     
     def __str__(self):

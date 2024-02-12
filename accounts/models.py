@@ -25,14 +25,14 @@ class Social(models.Model):
         verbose_name=_("Social Media Icon"), 
         default="images/icons/default.svg", 
         upload_to="images/icons/", 
-        validators=[FileExtensionValidator(['svg', 'png'])]
+        validators=[FileExtensionValidator(['svg', 'png', ''])]
     )
     icon_dark   = models.FileField(
         verbose_name=_("Social Media Dark Icon"),
         upload_to="images/icons/",
         null=True,
         blank=True,
-        validators=[FileExtensionValidator(['svg', 'png'])]
+        validators=[FileExtensionValidator(['svg', 'png', ''])]
     )
     link        = models.URLField(verbose_name=_("Social Media Link"), max_length=255, unique=True)
     

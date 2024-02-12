@@ -14,7 +14,7 @@ class Service(models.Model):
         verbose_name=_("Service Image"),
         default="images/services/default.png", 
         upload_to="images/services/",
-        validators=[FileExtensionValidator(['svg', 'png', 'jpg', 'jpeg', 'webp'])]
+        validators=[FileExtensionValidator(['svg', 'png', 'jpg', 'jpeg', 'webp', ''])]
     )
     icon_alt    = models.CharField(verbose_name=_("Service Icon Alternative Text"), max_length=255)
     priority    = models.PositiveSmallIntegerField(verbose_name=_("Service Display Order/Priority"), unique=True)
