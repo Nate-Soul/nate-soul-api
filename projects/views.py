@@ -56,7 +56,7 @@ class RelatedProjectsView(APIView):
     
     def get(self, request, slug, *args, **kwargs):
         project = self.get_object(slug)
-        related_projects = self.model_class.objects.filter(categories__in=project.categories.all()).exclude(id=project.id).distinct()
+        related_projects = self.model_class.objects.filter(services__in=project.services.all()).exclude(id=project.id).distinct()
         serializer = self.serializer_class(related_projects, many=True, context = {"request": request})
         response_context = {
             "data": serializer.data, 
