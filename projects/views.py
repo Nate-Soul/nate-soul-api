@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404
+from rest_framework import status, permissions
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, permissions
+
 from .serializers import (
     ProjectSerializer, 
     TagSerializer, 
@@ -16,19 +18,22 @@ from .models import (
 )
 
 # Create your views here.
+class CustomPagination(PageNumberPagination):
+    page_size = 12
+    page_size_query_param = 'page_size'
+    max_page_size = 20
+
 class ProjectListAPIView(APIView):
     
     serializer_class = ProjectSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     
     def get(self, request, *args, **kwargs):
-        projects = Project.objects.filter(is_active=True)
-        serializer = self.serializer_class(projects, many=True, context={"request": request})
-        response_context = {
-            "data": serializer.data,
-            "message": "Project list fetched successfully"
-        }
-        return Response(response_context, status=status.HTTP_200_OK)
+        paginator  = CustomPagination()
+        queryset   = Project.objects.filter(is_active=True)
+        result_page = paginator.paginate_queryset(queryset, request)
+        serializer = self.serializer_class(result_page, many=True, context={"request": request})
+        return paginator.get_paginated_response(serializer.data)
     
 class ProjectDetailAPIView(APIView):
     
