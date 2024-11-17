@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'testimonials',
     'processes',
     'accounts',
+    'blogapi',
 ]
 
 MIDDLEWARE = [
