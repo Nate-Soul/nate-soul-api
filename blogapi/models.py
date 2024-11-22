@@ -27,7 +27,7 @@ class Article(models.Model):
     slug  = models.SlugField(max_length=255, unique=True, verbose_name=_("Article Safe URL"))
     excerpt = models.TextField(verbose_name=_("Article Overview"), null=True, blank=True)
     excerpt = models.TextField(blank=True, null=True)
-    featured_img_url = models.ImageField(upload_to="images/blog/thumbnails", default="images/blog/default.png", blank=True, null=True)
+    featured_img_url = models.ImageField(upload_to="images/blog/thumbnails", default="images/blog/default", blank=True, null=True)
     tags = models.ManyToManyField(ArticleTag, related_name="tags")
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     content = CKEditor5Field(null=True, blank=True, config_name="extends")
