@@ -1,5 +1,7 @@
 from .base import *
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 

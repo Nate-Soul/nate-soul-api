@@ -27,10 +27,12 @@ from projects.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor5/', include("django_ckeditor_5.urls")),
     path('api/accounts/', include("accounts.urls", namespace="accounts")),
     path('api/processes/', include("processes.urls", namespace="processes")),
     path('api/projects/', include("projects.urls", namespace="projects")),
     path('api/services/', include("services.urls", namespace="services")),
+    path('api/blog/', include("blogapi.urls", namespace="blog")),
     path('api/testimonials/', include("testimonials.urls", namespace="testimonials")),
     path('api/tags/', TagListAPIView.as_view(), name="tag-list"),
     path('api/categories/', CategoryListAPIView.as_view(), name="category-list"),

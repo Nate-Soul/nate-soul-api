@@ -17,7 +17,6 @@ class ProjectImageSerializer(serializers.ModelSerializer):
         model = ProjectImage
         fields = "__all__"
         
-        
     def get_image_url(self, obj):
         if obj.image:
             return self.context['request'].build_absolute_uri(obj.image.url)
