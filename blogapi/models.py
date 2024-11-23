@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
+from core.settings import base
+
 # Create your models here.
 class ArticleTag(models.Model):
     name        = models.CharField(max_length=100, verbose_name=_("Tag name"), unique=True)
@@ -23,11 +25,21 @@ class Article(models.Model):
         ('archived', 'Archived'),
     ]
 
+    def get_default_image():
+        if base.DEBUG:
+            return "images/blog/default.png"
+        return "images/blog/default"
+
     title = models.CharField(max_length=255, unique=True, verbose_name=_("Article title"))
     slug  = models.SlugField(max_length=255, unique=True, verbose_name=_("Article Safe URL"))
     excerpt = models.TextField(verbose_name=_("Article Overview"), null=True, blank=True)
     excerpt = models.TextField(blank=True, null=True)
-    featured_img_url = models.ImageField(upload_to="images/blog/thumbnails", default="images/blog/default", blank=True, null=True)
+    featured_img_url = models.ImageField(
+        upload_to="images/blog/thumbnails",
+        default=get_default_image,
+        blank=True, 
+        null=True
+    )
     tags = models.ManyToManyField(ArticleTag, related_name="tags")
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     content = CKEditor5Field(null=True, blank=True, config_name="extends")
