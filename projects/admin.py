@@ -8,9 +8,16 @@ class ProjectImageInline(admin.TabularInline):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
+    list_display = (
+        "name", 
+        "is_active", 
+        "priority", 
+        "modified_at"
+    )
     prepopulated_fields = {
         "slug": [slugify("name"),],
     }
+    list_filter = ("status", "is_active", "category", "tags")
     inlines = [
         ProjectImageInline,
     ]
