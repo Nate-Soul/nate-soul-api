@@ -17,7 +17,7 @@ class ProjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         "slug": [slugify("name"),],
     }
-    list_filter = ("status", "is_active", "category", "tags")
+    list_filter = ("status", "is_active", "categories", "tags")
     inlines = [
         ProjectImageInline,
     ]
